@@ -1,6 +1,7 @@
 import { createUser, getAllUsersService, loginUserService } from "../services/auth.service.js";
 
 
+// register user
 export const registerUser = async (req, res, next) => {
   try {
     const user = await createUser(req.body);
