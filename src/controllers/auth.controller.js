@@ -1,10 +1,15 @@
-import { createUser, getAllUsersService, loginUserService } from "../services/auth.service.js";
-
+import {
+  createUser,
+  getAllUsersService,
+  loginUserService,
+} from "../services/auth.service.js";
 
 // register user
 export const registerUser = async (req, res, next) => {
   try {
     const user = await createUser(req.body);
+
+    setAuthCookie(res, user.accessToken);
 
     res.status(201).json({
       success: true,
@@ -16,11 +21,12 @@ export const registerUser = async (req, res, next) => {
   }
 };
 
-
 // login user
 export const loginUser = async (req, res, next) => {
   try {
     const user = await loginUserService(req.body);
+
+    setAuthCookie(res, user.accessToken);
 
     res.status(200).json({
       success: true,
