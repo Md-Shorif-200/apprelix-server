@@ -1,6 +1,6 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcrypt";
-import { generateAccessToken } from "../utils/jwt.js";
+// import { generateAccessToken } from "../utils/jwt.js";
 
 export const createUser = async (payload) => {
   const existingUser = await User.findOne({ email: payload.email });
@@ -16,24 +16,16 @@ export const createUser = async (payload) => {
     password: hashedPassword,
   });
 
-   const accessToken = generateAccessToken({
-    userId: newUser._id,
-    role: newUser.role,
-  });
+  //  const accessToken = generateAccessToken({
+  //   userId: newUser._id,
+  //   role: newUser.role,
+  // });
 
-  return {
-    user: newUser,
-    accessToken,
-  };
 
   return newUser;
 };
 
-export const getAllUsersService = async () => {
-  const users = await User.find();
 
-  return users;
-};
 
 // login user
 export const loginUserService = async (payload) => {
@@ -55,13 +47,8 @@ export const loginUserService = async (payload) => {
     });
   }
 
-  const accessToken = generateAccessToken({
-    userId: user._id,
-    role: user.role,
-  });
 
-  return {
-    user,
-    accessToken,
-  };
+  return user ;
+    // accessToken,
+
 };
