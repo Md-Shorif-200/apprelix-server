@@ -49,25 +49,27 @@ export const updateUser = async (req, res, next) => {
       phone,
       country,
       city,
-      profilePhoto, // optional
+      profilePhoto, 
+      companyLogo, 
       companyName,
       companyWebsite,
       companyAddress,
+      roleDetails,
+      companyInfo
     } = req.body;
 
     // only send fields that exist (important clean logic)
     const payload = {};
 
+
+
+
+
     if (fullName) payload.fullName = fullName;
     if (phone) payload.phone = phone;
-    if (country) payload.country = country;
-    if (city) payload.city = city;
-
     if (profilePhoto) payload.profilePhoto = profilePhoto;
-
-    if (companyName) payload.companyName = companyName;
-    if (companyWebsite) payload.companyWebsite = companyWebsite;
-    if (companyAddress) payload.companyAddress = companyAddress;
+    if (roleDetails) payload.roleDetails = roleDetails;
+    if (companyInfo) payload.companyInfo = companyInfo;
 
     const updatedUser = await updateUserService(id, payload);
 
