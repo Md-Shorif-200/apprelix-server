@@ -16,9 +16,15 @@ const companyInfoSchema = new mongoose.Schema(
   {
     companyName: { type: String, index: true },
     companyWebsite: String,
-       companyLogo: {
-      type: String,
-      default: "",
+    companyLogo: {
+      url: {
+        type: String,
+        default: "",
+      },
+      publicId: {
+        type: String,
+        default: "",
+      },
     },
     location: {
       countryCode: String,
@@ -28,7 +34,6 @@ const companyInfoSchema = new mongoose.Schema(
       city: String,
     },
     streetAddress: String,
-
   },
   { _id: false },
 );
@@ -56,8 +61,14 @@ const userSchema = new mongoose.Schema(
     },
 
     profilePhoto: {
-      type: String,
-      default: "",
+      url: {
+        type: String,
+        default: "",
+      },
+      publicId: {
+        type: String,
+        default: "",
+      },
     },
     roleDetails: {
       type: roleDetailsSchema,

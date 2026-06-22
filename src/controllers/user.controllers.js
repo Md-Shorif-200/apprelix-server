@@ -67,9 +67,16 @@ export const updateUser = async (req, res, next) => {
 
     if (fullName) payload.fullName = fullName;
     if (phone) payload.phone = phone;
-    if (profilePhoto) payload.profilePhoto = profilePhoto;
+    if (profilePhoto?.url) payload.profilePhoto = profilePhoto;
     if (roleDetails) payload.roleDetails = roleDetails;
-    if (companyInfo) payload.companyInfo = companyInfo;
+  if (companyInfo) {
+  const { companyLogo, ...restCompanyInfo } = companyInfo;
+
+  payload.companyInfo = {
+    ...restCompanyInfo,                         
+    ...(companyLogo?.url && { companyLogo }),   
+  };
+}
 
     const updatedUser = await updateUserService(id, payload);
 
