@@ -1,10 +1,14 @@
-import { createUser, getAllUsersService, loginUserService } from "../services/auth.service.js";
-
+import {
+  createUser,
+  loginUserService,
+} from "../services/auth.service.js";
 
 // register user
 export const registerUser = async (req, res, next) => {
   try {
     const user = await createUser(req.body);
+
+
 
     res.status(201).json({
       success: true,
@@ -16,11 +20,12 @@ export const registerUser = async (req, res, next) => {
   }
 };
 
-
 // login user
 export const loginUser = async (req, res, next) => {
   try {
     const user = await loginUserService(req.body);
+
+
 
     res.status(200).json({
       success: true,
@@ -32,16 +37,4 @@ export const loginUser = async (req, res, next) => {
   }
 };
 
-// get all users
-export const getAllUsers = async (req, res, next) => {
-  try {
-    const users = await getAllUsersService();
 
-    res.status(200).json({
-      success: true,
-      data: users,
-    });
-  } catch (error) {
-    next(error);
-  }
-};

@@ -1,15 +1,25 @@
 ﻿import express from "express";
 import cookieParser from "cookie-parser";
 import routes from "./routes/index.js";
-import config from "./config/index.js";
+// import config from "./config/index.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 import cors from "cors";
 
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser(config.cookieSecret));
-app.use(cors());
+app.use(cookieParser());
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:5000",
+      "https://apprelix.vercel.app",  
+    ],
+    credentials: true,
+  })
+);
 
 app.use("/api/v1", routes);
 
