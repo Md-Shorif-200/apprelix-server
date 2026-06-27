@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { getAllUsersService, getSingleUserService, updateUserService } from "../services/users.service.js";
+import { getAllUsersService, getSingleUserService, updateUserService } from "../../services/user/users-service.js";
 
 // get all users
 export const getAllUsers = async (req, res, next) => {

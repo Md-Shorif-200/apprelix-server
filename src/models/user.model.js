@@ -89,3 +89,13 @@ const userSchema = new mongoose.Schema(
 );
 
 export const User = mongoose.model("User", userSchema);
+
+
+userSchema.virtual('rfqs', {
+  ref: 'Rfq', 
+  localField: '_id', 
+  foreignField: 'createdBy', 
+});
+
+userSchema.set('toJSON', { virtuals: true });
+userSchema.set('toObject', { virtuals: true });
